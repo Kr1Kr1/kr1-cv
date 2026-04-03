@@ -200,6 +200,7 @@
   .tag:hover { border-color: var(--accent); color: var(--accent); }
   .tag.accent { border-color: var(--accent); color: var(--accent); }
   .tag.blue   { border-color: var(--accent2); color: var(--accent2); }
+  .tag.outlined { border-color: var(--accent); color: var(--text); }
 
   .hero-meta {
     display: flex;
@@ -263,7 +264,7 @@
   ══════════════════════════════ */
   .about-stats {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 0.8rem;
     margin-bottom: 2rem;
   }
@@ -291,6 +292,28 @@
     max-width: 600px;
   }
   .about-bio strong { color: var(--text); font-weight: 600; }
+
+  .focus-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .focus-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.88rem;
+    color: #c8c4bc;
+  }
+
+  .focus-icon {
+    font-size: 1rem;
+    width: 1.4rem;
+    text-align: center;
+    flex-shrink: 0;
+  }
 
   /* ══════════════════════════════
      EXPERIENCE TAB
@@ -394,6 +417,10 @@
   .p-visual.apivideo   { background: linear-gradient(135deg, #0f1f0f, #1a2e18); }
   .p-visual.dailymotion{ background: linear-gradient(135deg, #1a0f2e, #2a1840); }
   .p-visual.hublo      { background: linear-gradient(135deg, #1f1208, #2e1c0a); }
+  .p-visual.community  { background: linear-gradient(135deg, #0f1e2e, #0a2a1e); }
+  .p-visual.teaching   { background: linear-gradient(135deg, #1e0f2e, #2e1a0a); }
+  .community .p-glow   { background: #4a9eff; }
+  .teaching .p-glow    { background: #e8c547; }
 
   .p-glow {
     position: absolute;
@@ -439,7 +466,7 @@
   }
 
   .sk-label {
-    font-size: 0.65rem;
+    font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -469,7 +496,7 @@
 
   .sk-cat {
     font-family: 'DM Mono', monospace;
-    font-size: 0.63rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.14em;
     color: var(--muted);
@@ -480,7 +507,7 @@
 
   .sk-pill {
     font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
+    font-size: 0.76rem;
     font-weight: 300;
     padding: 0.17rem 0.48rem;
     background: var(--tag-bg);
@@ -571,7 +598,7 @@
 
 <!-- ══ NAV ══ -->
 <nav>
-  <span class="nav-logo">Profil Freelance</span>
+  <span class="nav-logo">kr1.dev</span>
   <div class="nav-actions">
     <button class="nav-pdf" onclick="exportPDF()">↓ PDF</button>
     <a href="mailto:aitsiamer.karin@gmail.com" class="nav-cta">Me contacter</a>
@@ -592,13 +619,13 @@
         <h1 class="hero-name">Karin <em>Aït-Si-Amer</em></h1>
         <p class="hero-title">Senior SRE & DevOps · Montpellier (Full Remote)</p>
         <div class="hero-tags">
-          <span class="tag accent">Infrastructure as Code</span>
-          <span class="tag accent">Kubernetes</span>
-          <span class="tag blue">AWS · GCP</span>
-          <span class="tag">Terraform</span>
-          <span class="tag">CI/CD</span>
-          <span class="tag">Developer Experience</span>
-          <span class="tag">SRE</span>
+          <span class="tag outlined">Infrastructure as Code</span>
+          <span class="tag outlined">Kubernetes</span>
+          <span class="tag outlined">AWS · GCP</span>
+          <span class="tag outlined">CI/CD</span>
+          <span class="tag outlined">Developer Experience</span>
+          <span class="tag outlined">Observabilité</span>
+          <span class="tag outlined">SRE</span>
         </div>
         <div class="hero-meta">
           <div class="meta-item">
@@ -626,21 +653,39 @@
 
     <!-- ─── ABOUT ─── -->
     <div id="tab-about" class="tab-panel active">
+
       <div class="about-stats">
         <div class="stat-card">
-          <div class="stat-num">12</div>
-          <div class="stat-desc">années d'expérience infrastructure & SRE</div>
+          <div class="stat-num">80M+</div>
+          <div class="stat-desc">utilisateurs sur des infrastructures gérées en production</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">80M+</div>
-          <div class="stat-desc">utilisateurs sur la plateforme GCP gérée chez Yubo</div>
+          <div class="stat-num">3</div>
+          <div class="stat-desc">secteurs — Fintech · Médias · SaaS</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">5</div>
+          <div class="stat-desc">ingénieurs SRE recrutés & managés</div>
         </div>
       </div>
+
       <p class="about-bio">
-        Ingénieure infrastructure depuis 2011, je construis des systèmes fiables à grande échelle — de la migration d'applications bancaires chez <strong>CACIB</strong> aux plateformes cloud-native chez <strong>Yubo</strong> et <strong>api.video</strong>.<br><br>
-        Je suis particulièrement passionnée par <strong>l'Infrastructure as Code</strong>, l'expérience développeur (DX), et la fiabilité des systèmes. J'aime autant mettre les mains dans Terraform que structurer une équipe SRE ou documenter une architecture.<br><br>
-        Formée à Polytech'Paris-UPMC, j'ai évolué dans des contextes très variés — fintech, médias, scale-up — ce qui m'a appris à adapter mes pratiques au contexte autant qu'à la tech.
+        J'accompagne les sociétés et leurs équipes dans leurs enjeux de <strong>montée en charge</strong> — qu'il s'agisse d'infrastructure, de scalabilité ou d'automatisation — sur <strong>AWS, GCP</strong>, Cloud hybride ou on-premise.<br><br>
+        Spécialisée Kubernetes et son écosystème, j'interviens sur l'ensemble de la chaîne <strong>DevOps</strong> : du CI/CD à l'observabilité, en passant par la sécurité, l'expérience développeur et le FinOps.<br><br>
+        J'aime travailler en proximité avec les équipes produit et tech, avec un soin particulier pour le <strong>transfert de compétences</strong> et la documentation — surtout quand elle est générée par le code — pour que chaque intervention laisse l'équipe <em>plus autonome qu'à mon arrivée</em>. Je dispense également des <strong>formations</strong> sur Docker, Kubernetes et l'Infrastructure as Code.
       </p>
+
+      <div class="about-focus">
+        <p class="s-label" style="margin-top: 2rem;">Sujets de prédilection</p>
+        <ul class="focus-list">
+          <li><span class="focus-icon">🧑‍💻</span><span>Expérience développeur</span></li>
+          <li><span class="focus-icon">📡</span><span>Observabilité & monitoring</span></li>
+          <li><span class="focus-icon">☁️</span><span>Architecture Cloud</span></li>
+          <li><span class="focus-icon">🔄</span><span>CI/CD & automatisation</span></li>
+          <li><span class="focus-icon">🔒</span><span>DevSecOps</span></li>
+          <li><span class="focus-icon">💰</span><span>FinOps</span></li>
+        </ul>
+      </div>
     </div>
 
     <!-- ─── EXPERIENCE ─── -->
@@ -650,13 +695,52 @@
         <div class="t-item">
           <div class="t-dot"></div>
           <div class="t-header">
+            <span class="t-title">Co-fondatrice & CTO</span>
+            <span class="t-date">juil. 2025 — présent</span>
+          </div>
+          <div class="t-company">KitChef</div>
+          <p class="t-desc">Co-fondatrice et CTO d'une application de recettes de cuisine. Pilotage de l'ensemble de la stack technique : infrastructure AWS (ECS, RDS PostgreSQL, Load Balancer), monitoring Grafana, développement de l'API, du backoffice et d'un serveur MCP. Responsable également de la stratégie data et du business plan.</p>
+          <div class="t-tags">
+            <span class="t-tag">AWS</span><span class="t-tag">ECS</span><span class="t-tag">PostgreSQL</span><span class="t-tag">Grafana</span><span class="t-tag">MCP</span><span class="t-tag">CTO</span>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-header">
+            <span class="t-title">Mission Freelance — Migration infra & CI/CD</span>
+            <span class="t-date">sept. 2025 · 1 mois</span>
+          </div>
+          <div class="t-company">Sigilium</div>
+          <p class="t-desc">Migration d'un service legacy hébergé sur VM (configuré manuellement) vers une infrastructure AWS ECS conteneurisée, avec environnements staging et production, Load Balancer, et pipeline CI/CD GitLab incluant des tests automatisés.</p>
+          <div class="t-tags">
+            <span class="t-tag">AWS</span><span class="t-tag">ECS</span><span class="t-tag">GitLab CI</span><span class="t-tag">Docker</span><span class="t-tag">IaC</span><span class="t-tag">CI/CD</span>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-header">
+            <span class="t-title">Mission Freelance — Audit & Conformité ISO 27001</span>
+            <span class="t-date">juil. 2025 · 1 mois</span>
+          </div>
+          <div class="t-company">Gleamer.io</div>
+          <p class="t-desc">Audit de sécurité, analyse de conformité et mise en place d'un plan de remédiation en vue de l'obtention de la certification ISO 27001. Certification obtenue à l'issue de la mission.</p>
+          <div class="t-tags">
+            <span class="t-tag">ISO 27001</span><span class="t-tag">Audit</span><span class="t-tag">Sécurité</span><span class="t-tag">Conformité</span><span class="t-tag">DevSecOps</span>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-header">
             <span class="t-title">Senior DevOps & SRE</span>
             <span class="t-date">mai 2024 — juil. 2025</span>
           </div>
           <div class="t-company">Yubo</div>
-          <p class="t-desc">Focus Developer Experience au sein d'une équipe DevOps de 5 personnes opérant une infrastructure GCP à grande échelle (80M+ utilisateurs). Mise en place de pipelines Argo Workflows et templates Terraform modulaires pour autonomiser les équipes produit. Standardisation des envs de dev/staging, observabilité fine sur Datadog & Grafana.</p>
+          <p class="t-desc">Focus Developer Experience au sein d'une équipe DevOps de 5 personnes sur une infrastructure GCP à grande échelle (80M+ utilisateurs). Mise en place d'un cluster Kubernetes dédié au provisioning de l'ensemble de l'infrastructure cloud — autres clusters, services GCP, environnements — via Config Connector : une approche 100% Kubernetes-native, sans Terraform. Les ressources Config Connector sont réconciliées en continu par Argo, garantissant un état d'infrastructure toujours aligné avec le dépôt Git. Les équipes de développement consomment l'infrastructure via de simples manifestes YAML, sans dépendance aux outils IaC traditionnels. Astreintes en production.</p>
           <div class="t-tags">
-            <span class="t-tag">GCP</span><span class="t-tag">Kubernetes</span><span class="t-tag">Argo Workflows</span><span class="t-tag">Terraform</span><span class="t-tag">Datadog</span><span class="t-tag">DevXP</span>
+            <span class="t-tag">GCP</span><span class="t-tag">Kubernetes</span><span class="t-tag">Argo Workflows</span><span class="t-tag">Config Connector</span><span class="t-tag">Datadog</span><span class="t-tag">Developer Experience</span>
           </div>
         </div>
 
@@ -733,61 +817,31 @@
       <div class="portfolio-grid">
 
         <a class="p-card" href="#" onclick="return false;">
-          <div class="p-visual yubo">
+          <div class="p-visual community">
             <div class="p-glow"></div><div class="p-grid"></div>
-            <span class="p-icon">⚡</span>
+            <span class="p-icon">🎙️</span>
           </div>
           <div class="p-body">
-            <div class="p-co">Yubo · 2024–2025</div>
-            <div class="p-title">Platform Engineering à 80M d'utilisateurs</div>
-            <div class="p-desc">Refonte de la Developer Experience sur une infra GCP massive. Pipelines Argo Workflows, modules Terraform réutilisables, réduction du time-to-deploy.</div>
+            <div class="p-co">Co-organisatrice · depuis nov. 2024</div>
+            <div class="p-title">Cloud Native Montpellier</div>
+            <div class="p-desc">Animation de la communauté tech autour des sujets DevOps, SRE et Cloud en région occitane. Recherche de speakers, lecture des CFP (call for papers), organisation des conférences.</div>
             <div class="p-tags">
-              <span class="p-tag blue">GCP</span><span class="p-tag blue">Kubernetes</span><span class="p-tag yellow">Terraform</span><span class="p-tag blue">Argo</span>
+              <span class="p-tag blue">Community</span><span class="p-tag blue">DevOps</span><span class="p-tag blue">Cloud Native</span><span class="p-tag blue">SRE</span>
             </div>
           </div>
         </a>
 
         <a class="p-card" href="#" onclick="return false;">
-          <div class="p-visual apivideo">
+          <div class="p-visual teaching">
             <div class="p-glow"></div><div class="p-grid"></div>
-            <span class="p-icon">🎬</span>
+            <span class="p-icon">🎓</span>
           </div>
           <div class="p-body">
-            <div class="p-co">api.video · 2021–2022</div>
-            <div class="p-title">Infrastructure multi-cloud pour la vidéo</div>
-            <div class="p-desc">Architecture multi-cloud (3 providers, multi-régions). Clusters Ceph S3/CephFS, SLI/SLO sur Prometheus, tout géré en IaC.</div>
+            <div class="p-co">Formatrice</div>
+            <div class="p-title">Enseignement SysOps & Infrastructure as Code</div>
+            <div class="p-desc">Cours dispensés dans plusieurs établissements : My Digital School (module SysOps & IaC) et Sup de Vinci.</div>
             <div class="p-tags">
-              <span class="p-tag green">Multi-cloud</span><span class="p-tag green">Ceph</span><span class="p-tag yellow">Terraform</span><span class="p-tag green">SLO</span>
-            </div>
-          </div>
-        </a>
-
-        <a class="p-card" href="#" onclick="return false;">
-          <div class="p-visual dailymotion">
-            <div class="p-glow"></div><div class="p-grid"></div>
-            <span class="p-icon">📡</span>
-          </div>
-          <div class="p-body">
-            <div class="p-co">Dailymotion · 2017–2021</div>
-            <div class="p-title">CI/CD corporate & Kubernetes on-premise</div>
-            <div class="p-desc">Industrialisation de la CI/CD sur 2000+ machines. Clusters Kubernetes on-premise et GKE. Audit et sécurisation.</div>
-            <div class="p-tags">
-              <span class="p-tag purple">Kubernetes</span><span class="p-tag purple">GKE</span><span class="p-tag purple">CI/CD</span>
-            </div>
-          </div>
-        </a>
-
-        <a class="p-card" href="#" onclick="return false;">
-          <div class="p-visual hublo">
-            <div class="p-glow"></div><div class="p-grid"></div>
-            <span class="p-icon">🏗</span>
-          </div>
-          <div class="p-body">
-            <div class="p-co">Hublo · 2022–2024</div>
-            <div class="p-title">Construction d'une équipe SRE from scratch</div>
-            <div class="p-desc">Recrutement, structuration de l'astreinte, roadmap technique et alignement avec les OKRs produit.</div>
-            <div class="p-tags">
-              <span class="p-tag yellow">SRE</span><span class="p-tag yellow">Management</span><span class="p-tag yellow">OKR</span>
+              <span class="p-tag yellow">Formation</span><span class="p-tag yellow">IaC</span><span class="p-tag yellow">Kubernetes</span><span class="p-tag yellow">Docker</span>
             </div>
           </div>
         </a>
@@ -810,7 +864,7 @@
         <span class="sk-pill hi">★ Helm</span>
         <span class="sk-pill hi">★ Docker</span>
         <span class="sk-pill">Compose</span>
-        <span class="sk-pill hi">★ Argo Workflows</span>
+        <span class="sk-pill hi">★ ArgoCD</span>
       </div>
     </div>
 
@@ -838,8 +892,9 @@
     <div class="sk-group">
       <div class="sk-cat">CI/CD</div>
       <div class="sk-pills">
-        <span class="sk-pill">GitHub Actions</span>
-        <span class="sk-pill">GitLab CI</span>
+        <span class="sk-pill hi">★ GitHub Actions</span>
+        <span class="sk-pill hi">★ GitLab CI</span>
+        <span class="sk-pill hi">★ Argo Workflows</span>
         <span class="sk-pill">Jenkins</span>
       </div>
     </div>
@@ -847,9 +902,10 @@
     <div class="sk-group">
       <div class="sk-cat">Observabilité</div>
       <div class="sk-pills">
-        <span class="sk-pill">Datadog</span>
+        <span class="sk-pill hi">★ Datadog</span>
         <span class="sk-pill">Prometheus</span>
-        <span class="sk-pill">Grafana</span>
+        <span class="sk-pill hi">★ Grafana</span>
+        <span class="sk-pill hi">★ VictoriaMetrics</span>
         <span class="sk-pill">ELK</span>
         <span class="sk-pill">Sensu</span>
       </div>
@@ -858,7 +914,7 @@
     <div class="sk-group">
       <div class="sk-cat">Secrets & Mesh</div>
       <div class="sk-pills">
-        <span class="sk-pill">Vault</span>
+        <span class="sk-pill hi">★ Vault</span>
         <span class="sk-pill">Consul</span>
         <span class="sk-pill">Consul Template</span>
       </div>
