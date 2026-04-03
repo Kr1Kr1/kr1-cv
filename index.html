@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Karin Aït-Si-Amer — Senior SRE & DevOps</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0b0b0a;
@@ -15,17 +15,17 @@
     --muted: #7a776e;
     --accent: #e8c547;
     --accent2: #4a9eff;
-    --red: #e05c3a;
     --tag-bg: #222018;
     --tag-border: #3a3730;
+    --sidebar-w: 240px;
+    --nav-h: 56px;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
@@ -33,148 +33,164 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ─── NAV ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ══════════════════════════════
+     NAV
+  ══════════════════════════════ */
   nav {
     position: sticky;
     top: 0;
-    z-index: 100;
-    background: rgba(11,11,10,0.85);
+    z-index: 200;
+    height: var(--nav-h);
+    background: rgba(11,11,10,0.9);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
     padding: 0 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 56px;
   }
 
   .nav-logo {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--muted);
   }
 
+  .nav-actions { display: flex; align-items: center; gap: 0.5rem; }
+
+  .nav-pdf {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 0.38rem 1rem;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .nav-pdf:hover { color: var(--text); border-color: var(--muted); }
+
   .nav-cta {
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.72rem;
+    font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     background: var(--accent);
     color: #0b0b0a;
-    padding: 0.4rem 1rem;
+    padding: 0.38rem 1rem;
     border-radius: 2px;
     text-decoration: none;
     transition: opacity 0.2s;
   }
-  .nav-cta:hover { opacity: 0.85; }
+  .nav-cta:hover { opacity: 0.82; }
+
+  /* ══════════════════════════════
+     PAGE LAYOUT — 2 colonnes
+  ══════════════════════════════ */
+  .page-layout {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr var(--sidebar-w);
+    gap: 0 2.5rem;
+    align-items: start;
+  }
+
+  /* ══════════════════════════════
+     COLONNE PRINCIPALE
+  ══════════════════════════════ */
+  .main-col {
+    min-width: 0;
+  }
 
   /* ─── HERO ─── */
   .hero {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 4rem 2rem 2rem;
+    padding: 3.5rem 0 2rem;
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
     align-items: start;
-    animation: fadeUp 0.7s ease both;
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
+    animation: fadeUp 0.6s ease both;
   }
 
   .avatar {
-    width: 100px;
-    height: 100px;
+    width: 88px;
+    height: 88px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #2a2520 0%, #3a3530 50%, #2a2820 100%);
     border: 2px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Instrument Serif', serif;
-    font-size: 2.4rem;
-    color: var(--accent);
     flex-shrink: 0;
-    position: relative;
-    overflow: hidden;
+    object-fit: cover;
+    display: block;
   }
-
-  .avatar::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: radial-gradient(circle at 35% 35%, rgba(232,197,71,0.12), transparent 60%);
-  }
-
-  .hero-info {}
 
   .availability {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: #4ade80;
-    margin-bottom: 0.7rem;
+    margin-bottom: 0.55rem;
   }
   .availability::before {
     content: '';
-    width: 6px;
-    height: 6px;
+    width: 6px; height: 6px;
     border-radius: 50%;
     background: #4ade80;
     animation: pulse 2s infinite;
   }
   @keyframes pulse {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
+    50% { opacity: 0.35; }
   }
 
   .hero-name {
-    font-family: 'Syne', sans-serif;
     font-weight: 800;
-    font-size: 2.4rem;
+    font-size: 2.2rem;
     line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.4rem;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.3rem;
   }
-
   .hero-name em {
-    font-family: 'Instrument Serif', serif;
     font-style: italic;
-    font-weight: 400;
+    font-weight: 300;
     color: var(--accent);
   }
 
   .hero-title {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     color: var(--muted);
     font-weight: 400;
-    margin-bottom: 1.2rem;
-    letter-spacing: 0.03em;
+    margin-bottom: 1rem;
   }
 
   .hero-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-bottom: 1.4rem;
+    gap: 0.35rem;
+    margin-bottom: 1.2rem;
   }
 
   .tag {
-    font-size: 0.68rem;
+    font-size: 0.65rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    padding: 0.25rem 0.65rem;
+    padding: 0.22rem 0.6rem;
     background: var(--tag-bg);
     border: 1px solid var(--tag-border);
     border-radius: 2px;
@@ -183,58 +199,38 @@
   }
   .tag:hover { border-color: var(--accent); color: var(--accent); }
   .tag.accent { border-color: var(--accent); color: var(--accent); }
-  .tag.blue { border-color: var(--accent2); color: var(--accent2); }
+  .tag.blue   { border-color: var(--accent2); color: var(--accent2); }
 
   .hero-meta {
     display: flex;
-    gap: 1.5rem;
+    gap: 1.4rem;
     flex-wrap: wrap;
   }
-
-  .meta-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.1rem;
-  }
+  .meta-item { display: flex; flex-direction: column; gap: 0.08rem; }
   .meta-label {
-    font-size: 0.6rem;
-    font-weight: 600;
+    font-size: 0.58rem;
+    font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--muted);
   }
-  .meta-value {
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--text);
-  }
-
-  /* ─── DIVIDER ─── */
-  .divider {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    border-bottom: 1px solid var(--border);
-  }
+  .meta-value { font-size: 0.8rem; font-weight: 600; }
 
   /* ─── TABS ─── */
-  .tabs-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 2rem;
+  .tabs-bar {
     display: flex;
-    gap: 0;
     border-bottom: 1px solid var(--border);
-    margin-top: 0;
+    margin-bottom: 0;
+    margin-top: 0.5rem;
   }
 
   .tab-btn {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.75rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    padding: 1rem 1.4rem;
+    padding: 0.85rem 1.2rem;
     background: none;
     border: none;
     border-bottom: 2px solid transparent;
@@ -246,671 +242,663 @@
   .tab-btn:hover { color: var(--text); }
   .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
 
-  /* ─── TAB CONTENT ─── */
-  .tab-content {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 2.5rem 2rem 5rem;
-    display: none;
-    animation: fadeUp 0.35s ease both;
-  }
-  .tab-content.active { display: block; }
+  /* ─── TAB PANELS ─── */
+  .tab-panel { display: none; padding: 2rem 0 5rem; animation: fadeUp 0.3s ease both; }
+  .tab-panel.active { display: block; }
 
-  /* ─── ABOUT TAB ─── */
-  .about-grid {
+  /* ─── SECTION LABEL ─── */
+  .s-label {
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ══════════════════════════════
+     ABOUT TAB
+  ══════════════════════════════ */
+  .about-stats {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin-bottom: 2.5rem;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
   }
 
   .stat-card {
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 4px;
-    padding: 1.4rem;
-  }
-
-  .stat-number {
-    font-family: 'Instrument Serif', serif;
-    font-size: 2.8rem;
-    line-height: 1;
-    color: var(--accent);
-    margin-bottom: 0.3rem;
-  }
-
-  .stat-desc {
-    font-size: 0.78rem;
-    color: var(--muted);
-    font-weight: 400;
-    line-height: 1.4;
-  }
-
-  .about-bio {
-    font-size: 0.92rem;
-    color: #c8c4bc;
-    line-height: 1.75;
-    margin-bottom: 2rem;
-    max-width: 640px;
-  }
-
-  .about-bio strong { color: var(--text); font-weight: 600; }
-
-  .section-title {
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .skill-category {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 4px;
     padding: 1.2rem;
   }
-
-  .skill-cat-name {
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+  .stat-num {
+    font-weight: 800;
+    font-size: 2.5rem;
+    line-height: 1;
+    letter-spacing: -0.04em;
     color: var(--accent);
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.25rem;
   }
+  .stat-desc { font-size: 0.75rem; color: var(--muted); line-height: 1.4; }
 
-  .skill-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
+  .about-bio {
+    font-size: 0.88rem;
+    color: #c8c4bc;
+    line-height: 1.8;
+    max-width: 600px;
   }
+  .about-bio strong { color: var(--text); font-weight: 600; }
 
-  .skill-item {
-    font-size: 0.78rem;
-    color: var(--text);
-    font-family: 'DM Mono', monospace;
-    font-weight: 300;
-  }
-
-  /* ─── EXPERIENCE TAB ─── */
-  .timeline {
-    position: relative;
-    padding-left: 1.5rem;
-  }
-
+  /* ══════════════════════════════
+     EXPERIENCE TAB
+  ══════════════════════════════ */
+  .timeline { position: relative; padding-left: 1.4rem; }
   .timeline::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: 8px;
-    bottom: 0;
+    left: 0; top: 8px; bottom: 0;
     width: 1px;
     background: var(--border);
   }
 
-  .timeline-item {
+  .t-item {
     position: relative;
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
+    margin-bottom: 2.2rem;
+    padding-bottom: 2.2rem;
     border-bottom: 1px solid var(--border);
-    animation: fadeUp 0.5s ease both;
+    animation: fadeUp 0.4s ease both;
   }
-  .timeline-item:last-child { border-bottom: none; margin-bottom: 0; }
-  .timeline-item:nth-child(1) { animation-delay: 0.05s; }
-  .timeline-item:nth-child(2) { animation-delay: 0.1s; }
-  .timeline-item:nth-child(3) { animation-delay: 0.15s; }
-  .timeline-item:nth-child(4) { animation-delay: 0.2s; }
-  .timeline-item:nth-child(5) { animation-delay: 0.25s; }
-  .timeline-item:nth-child(6) { animation-delay: 0.3s; }
+  .t-item:last-child { border-bottom: none; margin-bottom: 0; }
+  .t-item:nth-child(1) { animation-delay: 0.04s; }
+  .t-item:nth-child(2) { animation-delay: 0.08s; }
+  .t-item:nth-child(3) { animation-delay: 0.12s; }
+  .t-item:nth-child(4) { animation-delay: 0.16s; }
+  .t-item:nth-child(5) { animation-delay: 0.20s; }
+  .t-item:nth-child(6) { animation-delay: 0.24s; }
 
-  .timeline-dot {
+  .t-dot {
     position: absolute;
-    left: -1.875rem;
-    top: 6px;
-    width: 8px;
-    height: 8px;
+    left: -1.78rem; top: 6px;
+    width: 8px; height: 8px;
     border-radius: 50%;
     background: var(--border);
     border: 2px solid var(--bg);
   }
-  .timeline-item:first-child .timeline-dot { background: var(--accent); }
+  .t-item:first-child .t-dot { background: var(--accent); }
 
-  .exp-header {
+  .t-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: baseline;
     gap: 1rem;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.15rem;
   }
-
-  .exp-title {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--text);
-    line-height: 1.2;
-  }
-
-  .exp-date {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--muted);
-    white-space: nowrap;
-    margin-top: 0.2rem;
-  }
-
-  .exp-company {
-    font-size: 0.78rem;
-    color: var(--accent);
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.8rem;
-  }
-
-  .exp-desc {
-    font-size: 0.82rem;
-    color: #a09c93;
-    line-height: 1.7;
-    margin-bottom: 0.8rem;
-    font-weight: 400;
-  }
-
-  .exp-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.3rem;
-  }
-
-  .exp-tag {
+  .t-title { font-size: 1rem; font-weight: 700; }
+  .t-date {
     font-family: 'DM Mono', monospace;
     font-size: 0.62rem;
-    padding: 0.18rem 0.5rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .t-company { font-size: 0.75rem; font-weight: 600; color: var(--accent); margin-bottom: 0.6rem; }
+  .t-desc { font-size: 0.8rem; color: #a09c93; line-height: 1.7; margin-bottom: 0.7rem; }
+  .t-tags { display: flex; flex-wrap: wrap; gap: 0.28rem; }
+  .t-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    padding: 0.15rem 0.45rem;
     background: var(--tag-bg);
     border: 1px solid var(--tag-border);
     border-radius: 2px;
     color: var(--muted);
   }
 
-  /* ─── PORTFOLIO TAB ─── */
+  /* ══════════════════════════════
+     PORTFOLIO TAB
+  ══════════════════════════════ */
   .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: 0.9rem;
   }
 
-  .portfolio-card {
+  .p-card {
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 6px;
     overflow: hidden;
-    cursor: pointer;
-    transition: border-color 0.25s, transform 0.25s;
     text-decoration: none;
     display: block;
-    animation: fadeUp 0.5s ease both;
+    transition: border-color 0.22s, transform 0.22s;
+    animation: fadeUp 0.4s ease both;
   }
-  .portfolio-card:nth-child(1) { animation-delay: 0.05s; }
-  .portfolio-card:nth-child(2) { animation-delay: 0.1s; }
-  .portfolio-card:nth-child(3) { animation-delay: 0.15s; }
-  .portfolio-card:nth-child(4) { animation-delay: 0.2s; }
+  .p-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .p-card:nth-child(1) { animation-delay: 0.04s; }
+  .p-card:nth-child(2) { animation-delay: 0.08s; }
+  .p-card:nth-child(3) { animation-delay: 0.12s; }
+  .p-card:nth-child(4) { animation-delay: 0.16s; }
 
-  .portfolio-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-3px);
-  }
-
-  .card-visual {
-    height: 140px;
+  .p-visual {
+    height: 120px;
     position: relative;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 2.2rem;
   }
+  .p-visual.yubo       { background: linear-gradient(135deg, #0f1a2e, #1a2840); }
+  .p-visual.apivideo   { background: linear-gradient(135deg, #0f1f0f, #1a2e18); }
+  .p-visual.dailymotion{ background: linear-gradient(135deg, #1a0f2e, #2a1840); }
+  .p-visual.hublo      { background: linear-gradient(135deg, #1f1208, #2e1c0a); }
 
-  .card-visual.yubo {
-    background: linear-gradient(135deg, #0f1a2e 0%, #1a2840 50%, #0f2230 100%);
-  }
-  .card-visual.apivideo {
-    background: linear-gradient(135deg, #0f1f0f 0%, #1a2e18 50%, #0f1f10 100%);
-  }
-  .card-visual.dailymotion {
-    background: linear-gradient(135deg, #1a0f2e 0%, #2a1840 50%, #1a0f30 100%);
-  }
-  .card-visual.hublo {
-    background: linear-gradient(135deg, #1f1208 0%, #2e1c0a 50%, #1f1208 100%);
-  }
-
-  .card-icon {
-    font-family: 'DM Mono', monospace;
-    font-size: 2.5rem;
-    opacity: 0.6;
-    z-index: 1;
-  }
-
-  .card-glow {
+  .p-glow {
     position: absolute;
-    width: 120px;
-    height: 120px;
+    width: 100px; height: 100px;
     border-radius: 50%;
-    filter: blur(40px);
-    opacity: 0.3;
+    filter: blur(35px);
+    opacity: 0.28;
   }
-  .yubo .card-glow { background: var(--accent2); }
-  .apivideo .card-glow { background: #4ade80; }
-  .dailymotion .card-glow { background: #c084fc; }
-  .hublo .card-glow { background: var(--accent); }
+  .yubo .p-glow        { background: var(--accent2); }
+  .apivideo .p-glow    { background: #4ade80; }
+  .dailymotion .p-glow { background: #c084fc; }
+  .hublo .p-glow       { background: var(--accent); }
 
-  .card-grid-pattern {
-    position: absolute;
-    inset: 0;
+  .p-grid {
+    position: absolute; inset: 0;
     background-image:
       linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
       linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
     background-size: 20px 20px;
   }
+  .p-icon { position: relative; z-index: 1; }
 
-  .card-body {
-    padding: 1.2rem;
+  .p-body { padding: 1rem 1.1rem; }
+  .p-co   { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.25rem; }
+  .p-title{ font-size: 0.88rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; line-height: 1.3; }
+  .p-desc { font-size: 0.73rem; color: var(--muted); line-height: 1.5; margin-bottom: 0.7rem; }
+  .p-tags { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+  .p-tag  { font-family: 'DM Mono', monospace; font-size: 0.58rem; padding: 0.14rem 0.4rem; border-radius: 2px; }
+  .p-tag.blue   { background: rgba(74,158,255,0.12); color: var(--accent2); }
+  .p-tag.green  { background: rgba(74,222,128,0.10); color: #4ade80; }
+  .p-tag.yellow { background: rgba(232,197,71,0.10); color: var(--accent); }
+  .p-tag.purple { background: rgba(192,132,252,0.10); color: #c084fc; }
+
+  /* ══════════════════════════════
+     SIDEBAR COMPÉTENCES (sticky)
+  ══════════════════════════════ */
+  .skills-sidebar {
+    position: sticky;
+    top: calc(var(--nav-h) + 1.5rem);
+    padding: 2rem 0 2rem 2rem;
+    border-left: 1px solid var(--border);
+    animation: fadeUp 0.7s ease 0.15s both;
   }
 
-  .card-company {
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.3rem;
-  }
-
-  .card-title {
-    font-size: 0.95rem;
+  .sk-label {
+    font-size: 0.65rem;
     font-weight: 700;
-    color: var(--text);
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
   }
 
-  .card-desc {
-    font-size: 0.75rem;
-    color: var(--muted);
-    line-height: 1.5;
-    margin-bottom: 0.8rem;
-    font-weight: 400;
-  }
-
-  .card-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.3rem;
-  }
-
-  .card-tag {
+  .sk-legend {
     font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    padding: 0.15rem 0.45rem;
+    font-size: 0.58rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .sk-legend::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 1px;
+    background: rgba(232,197,71,0.4);
+    vertical-align: middle;
+    margin-right: 0.3rem;
+  }
+
+  .sk-group { margin-bottom: 1.1rem; }
+
+  .sk-cat {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.63rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    margin-bottom: 0.38rem;
+  }
+
+  .sk-pills { display: flex; flex-wrap: wrap; gap: 0.28rem; }
+
+  .sk-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 300;
+    padding: 0.17rem 0.48rem;
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
     border-radius: 2px;
+    color: var(--muted);
+    transition: border-color 0.15s, color 0.15s;
+    cursor: default;
+  }
+  .sk-pill:hover { border-color: var(--accent); color: var(--accent); }
+  .sk-pill.hi {
+    border-color: rgba(232,197,71,0.4);
+    color: var(--text);
     font-weight: 400;
   }
-  .card-tag.blue { background: rgba(74,158,255,0.12); color: var(--accent2); }
-  .card-tag.green { background: rgba(74,222,128,0.1); color: #4ade80; }
-  .card-tag.yellow { background: rgba(232,197,71,0.1); color: var(--accent); }
-  .card-tag.purple { background: rgba(192,132,252,0.1); color: #c084fc; }
 
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 640px) {
-    .hero { grid-template-columns: 1fr; }
-    .about-grid { grid-template-columns: 1fr 1fr; }
-    .skills-grid { grid-template-columns: 1fr 1fr; }
+  /* Formation + Langues dans la sidebar */
+  .sk-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 1.4rem 0;
+  }
+
+  .sk-edu { margin-bottom: 0.75rem; }
+  .sk-edu-title { font-size: 0.84rem; font-weight: 600; color: var(--text); line-height: 1.3; }
+  .sk-edu-sub   { font-family: 'DM Mono', monospace; font-size: 0.67rem; color: var(--muted); margin-top: 0.08rem; }
+
+  .sk-lang {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    padding: 0.2rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .sk-lang:last-child { border-bottom: none; }
+  .sk-lang-lvl { font-family: 'DM Mono', monospace; font-size: 0.67rem; color: var(--muted); }
+
+  /* ══════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════ */
+  @media (max-width: 700px) {
+    .page-layout { grid-template-columns: 1fr; }
+    .skills-sidebar { position: static; border-left: none; border-top: 1px solid var(--border); padding: 2rem 0 0; margin-top: 2rem; }
     .portfolio-grid { grid-template-columns: 1fr; }
+    .hero { grid-template-columns: 1fr; }
     .hero-name { font-size: 1.8rem; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ══════════════════════════════
+     PRINT / PDF
+  ══════════════════════════════ */
+  @media print {
+    @page { size: A4; margin: 14mm 16mm; }
+
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+    nav { display: none !important; }
+
+    body { font-size: 9pt; }
+
+    .page-layout {
+      grid-template-columns: 1fr 200px;
+      gap: 0 1.5rem;
+      max-width: 100%;
+      padding: 0;
+    }
+
+    .hero { padding: 0 0 1.5rem; animation: none; }
+
+    .tab-panel { display: block !important; padding: 1rem 0; animation: none; }
+
+    .tab-panel + .tab-panel { border-top: 1px solid var(--border); }
+
+    .tabs-bar { display: none; }
+
+    .skills-sidebar { position: static; top: auto; }
+
+    .t-item, .p-card { page-break-inside: avoid; break-inside: avoid; }
+
+    a { text-decoration: none; color: inherit; }
+
+    .availability::before { animation: none; }
   }
 </style>
 </head>
 <body>
 
+<!-- ══ NAV ══ -->
 <nav>
   <span class="nav-logo">Profil Freelance</span>
-  <a href="mailto:aitsiamer.karin@gmail.com" class="nav-cta">Me contacter</a>
+  <div class="nav-actions">
+    <button class="nav-pdf" onclick="exportPDF()">↓ PDF</button>
+    <a href="mailto:aitsiamer.karin@gmail.com" class="nav-cta">Me contacter</a>
+  </div>
 </nav>
 
-<!-- ─── HERO ─── -->
-<section class="hero">
-  <div class="avatar">K</div>
-  <div class="hero-info">
-    <div class="availability">Disponible</div>
-    <h1 class="hero-name">Karin <em>Aït-Si-Amer</em></h1>
-    <p class="hero-title">Senior SRE & DevOps · Montpellier (Full Remote)</p>
-    <div class="hero-tags">
-      <span class="tag accent">Infrastructure as Code</span>
-      <span class="tag accent">Kubernetes</span>
-      <span class="tag blue">AWS · GCP</span>
-      <span class="tag">Terraform</span>
-      <span class="tag">CI/CD</span>
-      <span class="tag">Developer Experience</span>
-      <span class="tag">SRE</span>
-    </div>
-    <div class="hero-meta">
-      <div class="meta-item">
-        <span class="meta-label">Expérience</span>
-        <span class="meta-value">12+ ans</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">TJM</span>
-        <span class="meta-value">Sur devis</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Modalité</span>
-        <span class="meta-value">Full Remote</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Langue</span>
-        <span class="meta-value">FR · EN</span>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ══ PAGE ══ -->
+<div class="page-layout">
 
-<div class="divider"></div>
+  <!-- ════ COLONNE PRINCIPALE ════ -->
+  <div class="main-col">
 
-<!-- ─── TABS ─── -->
-<div class="tabs-wrapper">
-  <button class="tab-btn active" onclick="switchTab('about')">À propos</button>
-  <button class="tab-btn" onclick="switchTab('experience')">Expérience</button>
-  <button class="tab-btn" onclick="switchTab('portfolio')">Portfolio</button>
-</div>
-
-<!-- ═══ TAB: ABOUT ═══ -->
-<div id="tab-about" class="tab-content active">
-
-  <div class="about-grid">
-    <div class="stat-card">
-      <div class="stat-number">12</div>
-      <div class="stat-desc">années d'expérience en infrastructure et SRE</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">80M+</div>
-      <div class="stat-desc">utilisateurs sur la plateforme GCP gérée chez Yubo</div>
-    </div>
-  </div>
-
-  <p class="about-bio">
-    Ingénieure infrastructure depuis 2011, je construis des systèmes fiables à grande échelle — de la migration d'applications bancaires chez <strong>CACIB</strong> aux plateformes cloud-native chez <strong>Yubo</strong> et <strong>api.video</strong>.<br><br>
-    Je suis particulièrement passionnée par <strong>l'Infrastructure as Code</strong>, l'expérience développeur (DX), et la fiabilité des systèmes. J'aime autant mettre les mains dans Terraform que structurer une équipe SRE ou documenter une architecture pour la rendre lisible à tous.<br><br>
-    Formée à Polytech'Paris-UPMC (ingénieure électronique/informatique), j'ai évolué dans des contextes très différents : fintech, médias, scale-up — ce qui m'a appris à adapter mes pratiques au contexte autant qu'à la tech.
-  </p>
-
-  <p class="section-title">Stack technique</p>
-  <div class="skills-grid">
-    <div class="skill-category">
-      <div class="skill-cat-name">Orchestration</div>
-      <div class="skill-list">
-        <span class="skill-item">Kubernetes / Helm</span>
-        <span class="skill-item">Argo Workflows</span>
-        <span class="skill-item">Docker / Compose</span>
-      </div>
-    </div>
-    <div class="skill-category">
-      <div class="skill-cat-name">IaC & Automatisation</div>
-      <div class="skill-list">
-        <span class="skill-item">Terraform / Pulumi</span>
-        <span class="skill-item">Ansible / SaltStack</span>
-        <span class="skill-item">Stackstorm</span>
-      </div>
-    </div>
-    <div class="skill-category">
-      <div class="skill-cat-name">Cloud</div>
-      <div class="skill-list">
-        <span class="skill-item">AWS</span>
-        <span class="skill-item">GCP</span>
-        <span class="skill-item">On-premise / Multi-cloud</span>
-      </div>
-    </div>
-    <div class="skill-category">
-      <div class="skill-cat-name">CI/CD</div>
-      <div class="skill-list">
-        <span class="skill-item">GitHub Actions</span>
-        <span class="skill-item">GitLab CI</span>
-        <span class="skill-item">Jenkins</span>
-      </div>
-    </div>
-    <div class="skill-category">
-      <div class="skill-cat-name">Observabilité</div>
-      <div class="skill-list">
-        <span class="skill-item">Datadog / Grafana</span>
-        <span class="skill-item">Prometheus / ELK</span>
-        <span class="skill-item">Sensu / OpsGenie</span>
-      </div>
-    </div>
-    <div class="skill-category">
-      <div class="skill-cat-name">Secrets & Mesh</div>
-      <div class="skill-list">
-        <span class="skill-item">Vault</span>
-        <span class="skill-item">Consul + Template</span>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- ═══ TAB: EXPERIENCE ═══ -->
-<div id="tab-experience" class="tab-content">
-  <div class="timeline">
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="exp-header">
-        <div>
-          <div class="exp-title">Senior DevOps & SRE</div>
-          <div class="exp-company">Yubo</div>
+    <!-- HERO -->
+    <div class="hero">
+      <img class="avatar" src="avatar.jpeg" alt="Karin Aït-Si-Amer">
+      <div>
+        <div class="availability">Disponible</div>
+        <h1 class="hero-name">Karin <em>Aït-Si-Amer</em></h1>
+        <p class="hero-title">Senior SRE & DevOps · Montpellier (Full Remote)</p>
+        <div class="hero-tags">
+          <span class="tag accent">Infrastructure as Code</span>
+          <span class="tag accent">Kubernetes</span>
+          <span class="tag blue">AWS · GCP</span>
+          <span class="tag">Terraform</span>
+          <span class="tag">CI/CD</span>
+          <span class="tag">Developer Experience</span>
+          <span class="tag">SRE</span>
         </div>
-        <div class="exp-date">mai 2024 — juil. 2025</div>
-      </div>
-      <p class="exp-desc">Focus Developer Experience au sein d'une équipe DevOps de 5 personnes opérant une infrastructure GCP à grande échelle (80M+ utilisateurs). Mise en place de pipelines Argo Workflows et de templates Terraform modulaires pour autonomiser les équipes produit. Standardisation des environnements de dev et staging, observabilité fine sur Datadog & Grafana.</p>
-      <div class="exp-tags">
-        <span class="exp-tag">GCP</span>
-        <span class="exp-tag">Kubernetes</span>
-        <span class="exp-tag">Argo Workflows</span>
-        <span class="exp-tag">Terraform</span>
-        <span class="exp-tag">Datadog</span>
-        <span class="exp-tag">Developer Experience</span>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="exp-header">
-        <div>
-          <div class="exp-title">SRE Engineering Manager</div>
-          <div class="exp-company">Hublo</div>
-        </div>
-        <div class="exp-date">nov. 2022 — mars 2024</div>
-      </div>
-      <p class="exp-desc">Management d'une équipe de 5 ingénieurs SRE : recrutement, encadrement, astreinte en journée, roadmap et OKR d'équipe. 1-to-1s réguliers, communication transverse avec les équipes produit et engineering.</p>
-      <div class="exp-tags">
-        <span class="exp-tag">Management</span>
-        <span class="exp-tag">SRE</span>
-        <span class="exp-tag">OKR</span>
-        <span class="exp-tag">Recrutement</span>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="exp-header">
-        <div>
-          <div class="exp-title">Senior DevOps & SRE</div>
-          <div class="exp-company">api.video</div>
-        </div>
-        <div class="exp-date">août 2021 — sept. 2022</div>
-      </div>
-      <p class="exp-desc">Conception et gestion d'une infrastructure multi-cloud (3 providers, multi-régions). Clusters Ceph S3 pour la VOD, CephFS pour le live streaming, PostgreSQL, RabbitMQ. Monitoring SLI/SLO sur Prometheus/Grafana. Outillage complet via Terraform, Ansible, GitLab CI.</p>
-      <div class="exp-tags">
-        <span class="exp-tag">Multi-cloud</span>
-        <span class="exp-tag">Ceph</span>
-        <span class="exp-tag">Terraform</span>
-        <span class="exp-tag">Ansible</span>
-        <span class="exp-tag">Prometheus</span>
-        <span class="exp-tag">SLI/SLO</span>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="exp-header">
-        <div>
-          <div class="exp-title">SysAdmin</div>
-          <div class="exp-company">Dailymotion</div>
-        </div>
-        <div class="exp-date">mars 2017 — juil. 2021</div>
-      </div>
-      <p class="exp-desc">Administration de 2000+ machines (2 datacenters parisiens + POPs). Industrialisation de la CI/CD corporate. Installation et administration de clusters Kubernetes on-premise et GKE. Étude des solutions de sécurisation Kubernetes.</p>
-      <div class="exp-tags">
-        <span class="exp-tag">Kubernetes</span>
-        <span class="exp-tag">GKE</span>
-        <span class="exp-tag">On-premise</span>
-        <span class="exp-tag">CI/CD</span>
-        <span class="exp-tag">2000+ machines</span>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="exp-header">
-        <div>
-          <div class="exp-title">Architecte Infrastructure</div>
-          <div class="exp-company">Société Générale — GTS/MKT/APS</div>
-        </div>
-        <div class="exp-date">janv. 2014 — févr. 2017</div>
-      </div>
-      <p class="exp-desc">Programme Cloud & Automation sur le stream PaaS. MVC DataLake autour des technologies Big Data. Animation du comité hebdomadaire d'architecture (première instance de validation avant comité budgétaire).</p>
-      <div class="exp-tags">
-        <span class="exp-tag">Architecture</span>
-        <span class="exp-tag">Cloud</span>
-        <span class="exp-tag">PaaS</span>
-        <span class="exp-tag">Big Data</span>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="exp-header">
-        <div>
-          <div class="exp-title">Chef de Projet Technique Junior</div>
-          <div class="exp-company">Crédit Agricole CIB</div>
-        </div>
-        <div class="exp-date">janv. 2011 — déc. 2013</div>
-      </div>
-      <p class="exp-desc">Projet RIO : migration de 350 applications, suppression de 1300 équipements, migration de 7500 flux CFT (dont paiements) vers 4 datacenters. Périmètre global sur les fonctions @business et sites institutionnels de CACIB.</p>
-      <div class="exp-tags">
-        <span class="exp-tag">Migration</span>
-        <span class="exp-tag">Gestion de projet</span>
-        <span class="exp-tag">350 applications</span>
-        <span class="exp-tag">Finance</span>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ═══ TAB: PORTFOLIO ═══ -->
-<div id="tab-portfolio" class="tab-content">
-  <div class="portfolio-grid">
-
-    <a class="portfolio-card" href="#" onclick="return false;">
-      <div class="card-visual yubo">
-        <div class="card-glow"></div>
-        <div class="card-grid-pattern"></div>
-        <div class="card-icon">⚡</div>
-      </div>
-      <div class="card-body">
-        <div class="card-company">Yubo · 2024–2025</div>
-        <div class="card-title">Platform Engineering à 80M d'utilisateurs</div>
-        <div class="card-desc">Refonte de la Developer Experience sur une infra GCP massive. Pipelines Argo Workflows, modules Terraform réutilisables, réduction du time-to-deploy pour les équipes produit.</div>
-        <div class="card-tags">
-          <span class="card-tag blue">GCP</span>
-          <span class="card-tag blue">Kubernetes</span>
-          <span class="card-tag yellow">Terraform</span>
-          <span class="card-tag blue">Argo</span>
+        <div class="hero-meta">
+          <div class="meta-item">
+            <span class="meta-label">Expérience</span>
+            <span class="meta-value">12+ ans</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Modalité</span>
+            <span class="meta-value">Full Remote</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Langue</span>
+            <span class="meta-value">FR · EN</span>
+          </div>
         </div>
       </div>
-    </a>
+    </div>
 
-    <a class="portfolio-card" href="#" onclick="return false;">
-      <div class="card-visual apivideo">
-        <div class="card-glow"></div>
-        <div class="card-grid-pattern"></div>
-        <div class="card-icon">🎬</div>
-      </div>
-      <div class="card-body">
-        <div class="card-company">api.video · 2021–2022</div>
-        <div class="card-title">Infrastructure multi-cloud pour la vidéo à la demande</div>
-        <div class="card-desc">Architecture multi-cloud (3 providers, multi-régions). Clusters Ceph S3 pour la VOD, CephFS pour le live. SLI/SLO mesurés sur Prometheus/Grafana, tout géré en IaC.</div>
-        <div class="card-tags">
-          <span class="card-tag green">Multi-cloud</span>
-          <span class="card-tag green">Ceph</span>
-          <span class="card-tag yellow">Terraform</span>
-          <span class="card-tag green">SLO</span>
+    <!-- TABS -->
+    <div class="tabs-bar">
+      <button class="tab-btn active" onclick="switchTab('about')">À propos</button>
+      <button class="tab-btn" onclick="switchTab('experience')">Expérience</button>
+      <button class="tab-btn" onclick="switchTab('portfolio')">Portfolio</button>
+    </div>
+
+    <!-- ─── ABOUT ─── -->
+    <div id="tab-about" class="tab-panel active">
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-num">12</div>
+          <div class="stat-desc">années d'expérience infrastructure & SRE</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">80M+</div>
+          <div class="stat-desc">utilisateurs sur la plateforme GCP gérée chez Yubo</div>
         </div>
       </div>
-    </a>
+      <p class="about-bio">
+        Ingénieure infrastructure depuis 2011, je construis des systèmes fiables à grande échelle — de la migration d'applications bancaires chez <strong>CACIB</strong> aux plateformes cloud-native chez <strong>Yubo</strong> et <strong>api.video</strong>.<br><br>
+        Je suis particulièrement passionnée par <strong>l'Infrastructure as Code</strong>, l'expérience développeur (DX), et la fiabilité des systèmes. J'aime autant mettre les mains dans Terraform que structurer une équipe SRE ou documenter une architecture.<br><br>
+        Formée à Polytech'Paris-UPMC, j'ai évolué dans des contextes très variés — fintech, médias, scale-up — ce qui m'a appris à adapter mes pratiques au contexte autant qu'à la tech.
+      </p>
+    </div>
 
-    <a class="portfolio-card" href="#" onclick="return false;">
-      <div class="card-visual dailymotion">
-        <div class="card-glow"></div>
-        <div class="card-grid-pattern"></div>
-        <div class="card-icon">📡</div>
-      </div>
-      <div class="card-body">
-        <div class="card-company">Dailymotion · 2017–2021</div>
-        <div class="card-title">CI/CD corporate & Kubernetes on-premise</div>
-        <div class="card-desc">Industrialisation de la CI/CD sur un parc de 2000+ machines. Déploiement et administration de clusters Kubernetes on-premise et GKE. Audit et sécurisation des clusters.</div>
-        <div class="card-tags">
-          <span class="card-tag purple">Kubernetes</span>
-          <span class="card-tag purple">GKE</span>
-          <span class="card-tag purple">CI/CD</span>
-          <span class="card-tag purple">Sécurité</span>
+    <!-- ─── EXPERIENCE ─── -->
+    <div id="tab-experience" class="tab-panel">
+      <div class="timeline">
+
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-header">
+            <span class="t-title">Senior DevOps & SRE</span>
+            <span class="t-date">mai 2024 — juil. 2025</span>
+          </div>
+          <div class="t-company">Yubo</div>
+          <p class="t-desc">Focus Developer Experience au sein d'une équipe DevOps de 5 personnes opérant une infrastructure GCP à grande échelle (80M+ utilisateurs). Mise en place de pipelines Argo Workflows et templates Terraform modulaires pour autonomiser les équipes produit. Standardisation des envs de dev/staging, observabilité fine sur Datadog & Grafana.</p>
+          <div class="t-tags">
+            <span class="t-tag">GCP</span><span class="t-tag">Kubernetes</span><span class="t-tag">Argo Workflows</span><span class="t-tag">Terraform</span><span class="t-tag">Datadog</span><span class="t-tag">DevXP</span>
+          </div>
         </div>
-      </div>
-    </a>
 
-    <a class="portfolio-card" href="#" onclick="return false;">
-      <div class="card-visual hublo">
-        <div class="card-glow"></div>
-        <div class="card-grid-pattern"></div>
-        <div class="card-icon">🏗</div>
-      </div>
-      <div class="card-body">
-        <div class="card-company">Hublo · 2022–2024</div>
-        <div class="card-title">Construction d'une équipe SRE de 5 ingénieurs</div>
-        <div class="card-desc">Création et management d'une équipe SRE from scratch : recrutement, structuration de l'astreinte, roadmap technique, alignement avec les OKR produit.</div>
-        <div class="card-tags">
-          <span class="card-tag yellow">SRE</span>
-          <span class="card-tag yellow">Management</span>
-          <span class="card-tag yellow">OKR</span>
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-header">
+            <span class="t-title">SRE Engineering Manager</span>
+            <span class="t-date">nov. 2022 — mars 2024</span>
+          </div>
+          <div class="t-company">Hublo</div>
+          <p class="t-desc">Management d'une équipe de 5 ingénieurs SRE : recrutement, encadrement, astreinte en journée, roadmap et OKRs. 1-to-1s réguliers, communication transverse avec les équipes produit et engineering.</p>
+          <div class="t-tags">
+            <span class="t-tag">Management</span><span class="t-tag">SRE</span><span class="t-tag">OKR</span><span class="t-tag">Recrutement</span>
+          </div>
         </div>
-      </div>
-    </a>
 
-  </div>
-</div>
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-header">
+            <span class="t-title">Senior DevOps & SRE</span>
+            <span class="t-date">août 2021 — sept. 2022</span>
+          </div>
+          <div class="t-company">api.video</div>
+          <p class="t-desc">Conception et gestion d'une infrastructure multi-cloud (3 providers, multi-régions). Clusters Ceph S3 pour la VOD, CephFS pour le live streaming, PostgreSQL, RabbitMQ. SLI/SLO sur Prometheus/Grafana. Outillage complet via Terraform, Ansible, GitLab CI.</p>
+          <div class="t-tags">
+            <span class="t-tag">Multi-cloud</span><span class="t-tag">Ceph</span><span class="t-tag">Terraform</span><span class="t-tag">Ansible</span><span class="t-tag">Prometheus</span><span class="t-tag">SLI/SLO</span>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-header">
+            <span class="t-title">SysAdmin</span>
+            <span class="t-date">mars 2017 — juil. 2021</span>
+          </div>
+          <div class="t-company">Dailymotion</div>
+          <p class="t-desc">Administration de 2000+ machines (2 datacenters parisiens + POPs). Industrialisation de la CI/CD corporate. Installation et administration de clusters Kubernetes on-premise et GKE. Étude des solutions de sécurisation Kubernetes.</p>
+          <div class="t-tags">
+            <span class="t-tag">Kubernetes</span><span class="t-tag">GKE</span><span class="t-tag">On-premise</span><span class="t-tag">CI/CD</span>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-header">
+            <span class="t-title">Architecte Infrastructure</span>
+            <span class="t-date">janv. 2014 — févr. 2017</span>
+          </div>
+          <div class="t-company">Société Générale — GTS/MKT/APS</div>
+          <p class="t-desc">Programme Cloud & Automation sur le stream PaaS. MVC DataLake autour des technologies Big Data. Animation du comité hebdomadaire d'architecture (première instance de validation avant comité budgétaire).</p>
+          <div class="t-tags">
+            <span class="t-tag">Architecture</span><span class="t-tag">Cloud</span><span class="t-tag">PaaS</span><span class="t-tag">Big Data</span>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-header">
+            <span class="t-title">Chef de Projet Technique Junior</span>
+            <span class="t-date">janv. 2011 — déc. 2013</span>
+          </div>
+          <div class="t-company">Crédit Agricole CIB</div>
+          <p class="t-desc">Projet RIO : migration de 350 applications, suppression de 1300 équipements, migration de 7500 flux CFT (dont paiements) vers 4 datacenters CACIB.</p>
+          <div class="t-tags">
+            <span class="t-tag">Migration</span><span class="t-tag">Gestion de projet</span><span class="t-tag">350 applications</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─── PORTFOLIO ─── -->
+    <div id="tab-portfolio" class="tab-panel">
+      <div class="portfolio-grid">
+
+        <a class="p-card" href="#" onclick="return false;">
+          <div class="p-visual yubo">
+            <div class="p-glow"></div><div class="p-grid"></div>
+            <span class="p-icon">⚡</span>
+          </div>
+          <div class="p-body">
+            <div class="p-co">Yubo · 2024–2025</div>
+            <div class="p-title">Platform Engineering à 80M d'utilisateurs</div>
+            <div class="p-desc">Refonte de la Developer Experience sur une infra GCP massive. Pipelines Argo Workflows, modules Terraform réutilisables, réduction du time-to-deploy.</div>
+            <div class="p-tags">
+              <span class="p-tag blue">GCP</span><span class="p-tag blue">Kubernetes</span><span class="p-tag yellow">Terraform</span><span class="p-tag blue">Argo</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="p-card" href="#" onclick="return false;">
+          <div class="p-visual apivideo">
+            <div class="p-glow"></div><div class="p-grid"></div>
+            <span class="p-icon">🎬</span>
+          </div>
+          <div class="p-body">
+            <div class="p-co">api.video · 2021–2022</div>
+            <div class="p-title">Infrastructure multi-cloud pour la vidéo</div>
+            <div class="p-desc">Architecture multi-cloud (3 providers, multi-régions). Clusters Ceph S3/CephFS, SLI/SLO sur Prometheus, tout géré en IaC.</div>
+            <div class="p-tags">
+              <span class="p-tag green">Multi-cloud</span><span class="p-tag green">Ceph</span><span class="p-tag yellow">Terraform</span><span class="p-tag green">SLO</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="p-card" href="#" onclick="return false;">
+          <div class="p-visual dailymotion">
+            <div class="p-glow"></div><div class="p-grid"></div>
+            <span class="p-icon">📡</span>
+          </div>
+          <div class="p-body">
+            <div class="p-co">Dailymotion · 2017–2021</div>
+            <div class="p-title">CI/CD corporate & Kubernetes on-premise</div>
+            <div class="p-desc">Industrialisation de la CI/CD sur 2000+ machines. Clusters Kubernetes on-premise et GKE. Audit et sécurisation.</div>
+            <div class="p-tags">
+              <span class="p-tag purple">Kubernetes</span><span class="p-tag purple">GKE</span><span class="p-tag purple">CI/CD</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="p-card" href="#" onclick="return false;">
+          <div class="p-visual hublo">
+            <div class="p-glow"></div><div class="p-grid"></div>
+            <span class="p-icon">🏗</span>
+          </div>
+          <div class="p-body">
+            <div class="p-co">Hublo · 2022–2024</div>
+            <div class="p-title">Construction d'une équipe SRE from scratch</div>
+            <div class="p-desc">Recrutement, structuration de l'astreinte, roadmap technique et alignement avec les OKRs produit.</div>
+            <div class="p-tags">
+              <span class="p-tag yellow">SRE</span><span class="p-tag yellow">Management</span><span class="p-tag yellow">OKR</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+  </div><!-- /main-col -->
+
+  <!-- ════ SIDEBAR COMPÉTENCES ════ -->
+  <aside class="skills-sidebar">
+
+    <p class="sk-label">Compétences</p>
+    <p class="sk-legend">★ préférences</p>
+
+    <div class="sk-group">
+      <div class="sk-cat">Orchestration</div>
+      <div class="sk-pills">
+        <span class="sk-pill hi">★ Kubernetes</span>
+        <span class="sk-pill hi">★ Helm</span>
+        <span class="sk-pill hi">★ Docker</span>
+        <span class="sk-pill">Compose</span>
+        <span class="sk-pill hi">★ Argo Workflows</span>
+      </div>
+    </div>
+
+    <div class="sk-group">
+      <div class="sk-cat">IaC & Automatisation</div>
+      <div class="sk-pills">
+        <span class="sk-pill hi">★ Terraform</span>
+        <span class="sk-pill hi">★ Pulumi</span>
+        <span class="sk-pill hi">★ Ansible</span>
+        <span class="sk-pill hi">★ SaltStack</span>
+        <span class="sk-pill">Stackstorm</span>
+      </div>
+    </div>
+
+    <div class="sk-group">
+      <div class="sk-cat">Cloud</div>
+      <div class="sk-pills">
+        <span class="sk-pill hi">★ AWS</span>
+        <span class="sk-pill hi">★ GCP</span>
+        <span class="sk-pill">On-premise</span>
+        <span class="sk-pill">Multi-cloud</span>
+      </div>
+    </div>
+
+    <div class="sk-group">
+      <div class="sk-cat">CI/CD</div>
+      <div class="sk-pills">
+        <span class="sk-pill">GitHub Actions</span>
+        <span class="sk-pill">GitLab CI</span>
+        <span class="sk-pill">Jenkins</span>
+      </div>
+    </div>
+
+    <div class="sk-group">
+      <div class="sk-cat">Observabilité</div>
+      <div class="sk-pills">
+        <span class="sk-pill">Datadog</span>
+        <span class="sk-pill">Prometheus</span>
+        <span class="sk-pill">Grafana</span>
+        <span class="sk-pill">ELK</span>
+        <span class="sk-pill">Sensu</span>
+      </div>
+    </div>
+
+    <div class="sk-group">
+      <div class="sk-cat">Secrets & Mesh</div>
+      <div class="sk-pills">
+        <span class="sk-pill">Vault</span>
+        <span class="sk-pill">Consul</span>
+        <span class="sk-pill">Consul Template</span>
+      </div>
+    </div>
+
+    <div class="sk-divider"></div>
+
+    <p class="sk-label">Formation</p>
+
+    <div class="sk-edu">
+      <div class="sk-edu-title">Polytech'Paris-UPMC</div>
+      <div class="sk-edu-sub">Ingénieure Électronique / Info<br>2007 – 2010</div>
+    </div>
+    <div class="sk-edu">
+      <div class="sk-edu-title">Lycée militaire de Saint-Cyr</div>
+      <div class="sk-edu-sub">Prépa MPSI / PSI · 2005–2007</div>
+    </div>
+
+    <div class="sk-divider"></div>
+
+    <p class="sk-label">Langues</p>
+    <div class="sk-lang"><span>Français</span><span class="sk-lang-lvl">Natif</span></div>
+    <div class="sk-lang"><span>Anglais</span><span class="sk-lang-lvl">Courant</span></div>
+
+  </aside>
+
+</div><!-- /page-layout -->
 
 <script>
   function switchTab(name) {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-    document.querySelector(`[onclick="switchTab('${name}')"]`).classList.add('active');
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelector(`.tab-btn[onclick="switchTab('${name}')"]`).classList.add('active');
     document.getElementById(`tab-${name}`).classList.add('active');
+  }
+
+  function exportPDF() {
+    document.querySelectorAll('.tab-panel').forEach(p => p.style.display = 'block');
+    window.print();
+    document.querySelectorAll('.tab-panel').forEach(p => p.style.display = '');
   }
 </script>
 
