@@ -81,6 +81,21 @@
   }
   .nav-pdf:hover { color: var(--text); border-color: var(--muted); }
 
+  .nav-cal {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.38rem 1rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .nav-cal:hover { background: var(--accent); color: #0b0b0a; }
+
   .nav-cta {
     font-size: 0.72rem;
     font-weight: 700;
@@ -565,6 +580,20 @@
 
     * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 
+    /* ── Mode clair pour l'impression ── */
+    :root {
+      --bg: #ffffff;
+      --surface: #f5f5f5;
+      --card: #f9f9f9;
+      --border: #e0e0e0;
+      --text: #1a1a1a;
+      --muted: #666666;
+      --accent: #c8a800;
+      --accent2: #2a6fcc;
+      --tag-bg: #f0f0f0;
+      --tag-border: #d0d0d0;
+    }
+
     nav { display: none !important; }
 
     body { font-size: 9pt; }
@@ -587,6 +616,10 @@
     .skills-sidebar { position: static; top: auto; }
 
     .t-item, .p-card { page-break-inside: avoid; break-inside: avoid; }
+    .about-focus { page-break-inside: avoid; break-inside: avoid; }
+    .about-stats { page-break-inside: avoid; break-inside: avoid; }
+    body { min-height: auto; }
+    .page-layout { min-height: auto; }
 
     a { text-decoration: none; color: inherit; }
 
@@ -601,7 +634,8 @@
   <span class="nav-logo">kr1.dev</span>
   <div class="nav-actions">
     <button class="nav-pdf" onclick="exportPDF()">↓ PDF</button>
-    <a href="mailto:aitsiamer.karin@gmail.com" class="nav-cta">Me contacter</a>
+    <a href="https://calendar.app.google/8coQm21CuqJgZxma7" target="_blank" class="nav-cal">Réserver un créneau</a>
+    <a href="mailto:karin.aitsiamer@kitchef.app" class="nav-cta">Me contacter</a>
   </div>
 </nav>
 
