@@ -781,9 +781,15 @@
             <span class="t-date">juil. 2025 - présent</span>
           </div>
           <div class="t-company">KitChef</div>
-          <p class="t-desc">Co-fondatrice et CTO d'une application de recettes de cuisine. Pilotage de l'ensemble de la stack technique : infrastructure AWS (ECS, RDS PostgreSQL, Load Balancer), monitoring Grafana, développement de l'API, du backoffice et d'un serveur MCP. Responsable également de la stratégie data et du business plan.</p>
+          <p class="t-desc">Co-fondatrice et CTO d'une application de recettes de cuisine, pilotant l'ensemble de la stack technique.</p>
+          <ul class="t-list">
+            <li>Infrastructure AWS (ECS, RDS PostgreSQL, Load Balancer) et monitoring Grafana.</li>
+            <li>Développement de l'API, du backoffice et d'un serveur MCP.</li>
+            <li>Mise en place d'un exporter OpenTelemetry sur AWS ECS pour la collecte des logs et des métriques système des conteneurs, alimentant les dashboards Grafana.</li>
+            <li>Responsable de la stratégie data et du business plan.</li>
+          </ul>
           <div class="t-tags">
-            <span class="t-tag">AWS</span><span class="t-tag">ECS</span><span class="t-tag">PostgreSQL</span><span class="t-tag">Grafana</span><span class="t-tag">MCP</span><span class="t-tag">CTO</span>
+            <span class="t-tag">AWS</span><span class="t-tag">ECS</span><span class="t-tag">PostgreSQL</span><span class="t-tag">OpenTelemetry</span><span class="t-tag">Grafana</span><span class="t-tag">MCP</span><span class="t-tag">CTO</span>
           </div>
         </div>
 
@@ -807,9 +813,13 @@
             <span class="t-date">juil. 2025 · 1 mois</span>
           </div>
           <div class="t-company">Gleamer.io</div>
-          <p class="t-desc">Audit de sécurité, analyse de conformité et mise en place d'un plan de remédiation en vue de l'obtention de la certification ISO 27001. Certification obtenue à l'issue de la mission.</p>
+          <p class="t-desc">Audit de sécurité, analyse de conformité et plan de remédiation en vue de la certification ISO 27001 (obtenue à l'issue de la mission).</p>
+          <ul class="t-list">
+            <li>Clusters Kubernetes sur GCP et mise en conformité de l'infrastructure, gérée en IaC via Terraform pour une remédiation pérenne.</li>
+            <li>En parallèle, mise en place de la collecte des métriques d'infrastructure depuis Rancher (utilisé pour provisionner des clusters Kubernetes à grande échelle), ingérées via Grafana Alloy dans une stack VictoriaMetrics / VictoriaLogs afin d'identifier les goulots d'étranglement.</li>
+          </ul>
           <div class="t-tags">
-            <span class="t-tag">ISO 27001</span><span class="t-tag">Audit</span><span class="t-tag">Sécurité</span><span class="t-tag">Conformité</span><span class="t-tag">DevSecOps</span>
+            <span class="t-tag">ISO 27001</span><span class="t-tag">Audit</span><span class="t-tag">Sécurité</span><span class="t-tag">GCP</span><span class="t-tag">Kubernetes</span><span class="t-tag">Terraform</span><span class="t-tag">Rancher</span><span class="t-tag">Grafana Alloy</span><span class="t-tag">VictoriaMetrics</span><span class="t-tag">DevSecOps</span>
           </div>
         </div>
 
@@ -820,9 +830,17 @@
             <span class="t-date">mai 2024 - juil. 2025</span>
           </div>
           <div class="t-company">Yubo</div>
-          <p class="t-desc">Focus Developer Experience au sein d'une équipe DevOps de 5 personnes sur une infrastructure GCP à grande échelle (80M+ utilisateurs). Mise en place d'un cluster Kubernetes dédié au provisioning de l'ensemble de l'infrastructure cloud (autres clusters, services GCP, environnements) via Config Connector : une approche 100% Kubernetes-native, sans Terraform. Les ressources Config Connector sont réconciliées en continu par Argo, garantissant un état d'infrastructure toujours aligné avec le dépôt Git. Les équipes de développement consomment l'infrastructure via de simples manifestes YAML, sans dépendance aux outils IaC traditionnels. Astreintes en production.</p>
+          <p class="t-desc">Focus Developer Experience au sein d'une équipe DevOps de 5 personnes sur une infrastructure GCP à grande échelle (80M+ utilisateurs).</p>
+          <ul class="t-list">
+            <li>Mise en place d'un cluster Kubernetes dédié au provisioning de l'ensemble de l'infrastructure cloud (autres clusters, services GCP, environnements) via Config Connector : une approche 100% Kubernetes-native, sans Terraform.</li>
+            <li>Ressources Config Connector réconciliées en continu par Argo, garantissant un état d'infrastructure toujours aligné avec le dépôt Git. Les équipes de dev consomment l'infrastructure via de simples manifestes YAML, sans dépendance aux outils IaC traditionnels.</li>
+            <li>Conception des templates YAML de monitoring : le déploiement d'un middleware déclenche automatiquement la création de ses tags et de ses dashboards de suivi.</li>
+            <li>Participation au chantier d'observabilité vendor-neutral bâti sur le Collector OpenTelemetry (Grafana Alloy) : collecte des logs applicatifs émis en stdout par les pods, acheminés vers VictoriaLogs et exposés dans Grafana, avec un soin porté à la structuration des logs (semi-structurés) pour faciliter requêtage et corrélation.</li>
+            <li>Côté infrastructure (machines et middlewares), collecte des métriques via agents Datadog et pipelines Alloy, en double écriture vers Datadog et VictoriaMetrics (via remote_write), une approche multi-backend limitant le vendor lock-in.</li>
+            <li>Astreintes en production.</li>
+          </ul>
           <div class="t-tags">
-            <span class="t-tag">GCP</span><span class="t-tag">Kubernetes</span><span class="t-tag">Argo Workflows</span><span class="t-tag">Config Connector</span><span class="t-tag">Datadog</span><span class="t-tag">Developer Experience</span>
+            <span class="t-tag">GCP</span><span class="t-tag">Kubernetes</span><span class="t-tag">Argo Workflows</span><span class="t-tag">Config Connector</span><span class="t-tag">OpenTelemetry</span><span class="t-tag">Grafana Alloy</span><span class="t-tag">VictoriaMetrics</span><span class="t-tag">VictoriaLogs</span><span class="t-tag">Grafana</span><span class="t-tag">Datadog</span><span class="t-tag">Developer Experience</span>
           </div>
         </div>
 
@@ -834,8 +852,16 @@
           </div>
           <div class="t-company">Hublo</div>
           <p class="t-desc">Management d'une équipe de 5 ingénieurs SRE : recrutement, encadrement, astreinte en journée, roadmap et OKRs. 1-to-1s réguliers, communication transverse avec les équipes produit et engineering.</p>
+          <ul class="t-list">
+            <li>Instrumentation OpenTelemetry de l'ensemble du monorepo de microservices TypeScript (géré par Nx) : scaffolding de service intégrant l'initialisation OTel des métriques et des traces, plus un fichier déclaratif de métadonnées (service name, version, équipe, environnement) alimentant le service catalog.</li>
+            <li>Définition de bons patterns de log applicative pour une ingestion correcte dans Datadog (normalisation), et attention particulière au sampling, ajusté selon les environnements.</li>
+            <li>Déploiement sur ECS avec un sidecar OpenTelemetry (Collector) collectant l'ensemble des signaux et les exportant vers Datadog.</li>
+            <li>Templates de dashboards Datadog garantissant qu'un service dispose dès le day one de son tableau de bord de suivi : latence HTTP (p99 / p95 / p75), taux d'erreur, traces en erreur, etc.</li>
+            <li>Définition des règles d'alerting et routage des notifications vers les différents channels Slack (sans astreinte programmée).</li>
+            <li>Normalisation du déploiement applicatif et de son suivi dans les dashboards : release active, event tags, observation des variations de latence, volume, erreurs et requêtes sur les applications du chemin critique suite à une release.</li>
+          </ul>
           <div class="t-tags">
-            <span class="t-tag">Management</span><span class="t-tag">SRE</span><span class="t-tag">OKR</span><span class="t-tag">Recrutement</span>
+            <span class="t-tag">Management</span><span class="t-tag">SRE</span><span class="t-tag">OKR</span><span class="t-tag">Recrutement</span><span class="t-tag">OpenTelemetry</span><span class="t-tag">Datadog</span><span class="t-tag">Nx</span><span class="t-tag">TypeScript</span><span class="t-tag">ECS</span><span class="t-tag">APM</span><span class="t-tag">Observabilité</span>
           </div>
         </div>
 
@@ -984,10 +1010,13 @@
     <div class="sk-group">
       <div class="sk-cat">Observabilité</div>
       <div class="sk-pills">
+        <span class="sk-pill hi">★ OpenTelemetry</span>
+        <span class="sk-pill hi">★ Grafana Alloy</span>
         <span class="sk-pill hi">★ Datadog</span>
-        <span class="sk-pill">Prometheus</span>
         <span class="sk-pill hi">★ Grafana</span>
         <span class="sk-pill hi">★ VictoriaMetrics</span>
+        <span class="sk-pill">VictoriaLogs</span>
+        <span class="sk-pill">Prometheus</span>
         <span class="sk-pill">ELK</span>
         <span class="sk-pill">Sensu</span>
       </div>
